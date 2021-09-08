@@ -25,6 +25,32 @@ fetch('data/json/total_run_by_team.json')
       });
   });
 
+// Total Runs by player scored for Royal Challanger Banglore is here
+fetch('data/json/player_runs_by_team.json')
+  .then(response => response.json())
+  .then(data => {
+      Highcharts.chart('run-by-players', {
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'Runs Scored By Players for RCB'
+          },
+          xAxis: {
+              type: 'category',
+          },
+          yAxis: {
+              title: {
+                  text: 'Runs Scored'
+            }
+          },
+          series: [{
+              name: 'Total Runs',
+              data: Object.entries(data).sort((a, b) => b[1] - a[1]).slice(0, 20)
+          }]
+      });
+  });
+
 // $(document).ready( ()=> {
 //     Highcharts.chart('container', {
 //         chart: {
