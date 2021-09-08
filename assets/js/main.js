@@ -51,6 +51,32 @@ fetch('data/json/player_runs_by_team.json')
       });
   });
 
+// Foreign Umpire Analysis is here
+fetch('data/json/umpire_analysis.json')
+  .then(response => response.json())
+  .then(data => {
+      Highcharts.chart('umpire-analysis', {
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'Umpire Count by Countries'
+          },
+          xAxis: {
+              type: 'category',
+          },
+          yAxis: {
+              title: {
+                  text: 'Count'
+            }
+          },
+          series: [{
+              name: 'Umpire Count',
+              data: Object.entries(data).sort((a, b) => b[1] - a[1])
+          }]
+      });
+  });
+
 // $(document).ready( ()=> {
 //     Highcharts.chart('container', {
 //         chart: {
